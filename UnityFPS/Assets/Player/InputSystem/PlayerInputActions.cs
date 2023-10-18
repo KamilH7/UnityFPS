@@ -72,7 +72,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""c30e6802-8d1c-48d3-a630-b10c0d946d7c"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

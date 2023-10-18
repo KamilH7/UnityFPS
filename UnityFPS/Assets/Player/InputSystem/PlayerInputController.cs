@@ -4,8 +4,12 @@ namespace UnityFPS.PlayerSystem.InputSystem
 {
     public class PlayerInputController : MonoBehaviour
     {
-        [field: SerializeField]
-        private PlayerInputActions InputActions { get; set; }
+		public PlayerInputActions Actions { get; private set; } = null;
+
+		private void Awake()
+		{
+			Actions = new PlayerInputActions();
+		}
 
 		private void OnEnable()
 		{
@@ -19,12 +23,12 @@ namespace UnityFPS.PlayerSystem.InputSystem
 
 		private void EnableInput()
 		{
-			InputActions.Enable();
+			Actions.Enable();
 		}
 
 		private void DisableInput()
 		{
-			InputActions.Disable();
+			Actions.Disable();
 		}
 	}
 }
