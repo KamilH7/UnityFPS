@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3843969921232398134}
   - component: {fileID: 1161208493199686099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 3133801291151727258}
   - component: {fileID: 3447027831998855377}
   - component: {fileID: 1291835419378977621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,6 +173,66 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5279273226949792021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 667881018428842919}
+  - component: {fileID: 5409611262429568595}
+  m_Layer: 6
+  m_Name: GroundCollisionFilter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &667881018428842919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279273226949792021}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4372192795575154325}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5409611262429568595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279273226949792021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0bf11916609de4d8986f8b2015d299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BoundCollisionNotifier>k__BackingField: {fileID: 8032667985726153459}
+  <CollisionLayerMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 128
+  <CollisionEnter>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <CollisionExit>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <TriggerEnter>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <TriggerExit>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5655253917389227395
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7827979871935554158}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 635282704337787659}
   - component: {fileID: 2158982613889177174}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,6 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6234ee25e0e75824f8ac87169c6a4308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <InputControllers>k__BackingField:
+  - {fileID: 6979416942918901081}
 --- !u!1 &7317461045889029589
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +322,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1968780317807151318}
   - component: {fileID: 1756746900487702071}
-  m_Layer: 0
+  - component: {fileID: 8032667985726153459}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,6 +363,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &8032667985726153459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317461045889029589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2643220525d1ad94fb82b539e47a1c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TriggerEnter>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <TriggerExit>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <CollisionEnter>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <CollisionExit>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7439694794841562143
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4372192795575154325}
   - component: {fileID: 6979416942918901081}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +415,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 667881018428842919}
   m_Father: {fileID: 635282704337787659}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -345,9 +433,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerRigidbody>k__BackingField: {fileID: 1756746900487702071}
-  <PlayerInput>k__BackingField: {fileID: 2158982613889177174}
+  <GroundCollisionFilter>k__BackingField: {fileID: 5409611262429568595}
   <Speed>k__BackingField: 5
   <JumpPower>k__BackingField: 500
+  <MoveVector>k__BackingField: {x: 0, y: 0, z: 0}
+  <IsGrounded>k__BackingField: 0
 --- !u!1 &8854131352456567755
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2381064829394660435}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,17 +1,17 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityFPS.PlayerSystem.InputSystem;
+using UnityFPS.Tools.CollisionDetection;
 
-namespace UnityFPS.PlayerSystem.MovementSystem
+namespace UnityFPS.PlayerSystem.InputSystem.MovementSystem
 {
-	public class PlayerMovementController : MonoBehaviour
+	public class PlayerMovementController : BaseInputController
 	{
 		[field: Header("References")]
 		[field: SerializeField]
 		private Rigidbody PlayerRigidbody { get; set; }
 		[field: SerializeField]
-		private PlayerInputController PlayerInput { get; set; }
+		private CollisionFilter GroundCollisionFilter { get; set; }
 
 		[field: Header("Settings")]
 		[field: SerializeField]
@@ -23,14 +23,14 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 		[field: SerializeField, ReadOnly]
 		private Vector3 MoveVector { get; set; }
 		[field: SerializeField, ReadOnly]
-		private bool IsGrounded { get; set; }
+		private bool IsGrounded { get; set; } = true;
 
-		private void OnEnable()
+		public override void EnableInput()
 		{
 			AttachToEvents();
 		}
 
-		private void OnDisable()
+		public override void DisableInput()
 		{
 			DetachFromEvents();
 		}
@@ -52,16 +52,22 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 
 		private void AttachToEvents()
 		{
-			PlayerInput.Actions.Movement.Walk.performed += OnPlayerWalk;
-			PlayerInput.Actions.Movement.Walk.canceled += OnPlayerStopWalk;
-			PlayerInput.Actions.Movement.Jump.performed += OnPlayerJump;
+			InputManager.Actions.Movement.Walk.performed += OnPlayerWalk;
+			InputManager.Actions.Movement.Walk.canceled += OnPlayerStopWalk;
+			InputManager.Actions.Movement.Jump.performed += OnPlayerJump;
+
+			GroundCollisionFilter.CollisionEnter.AddListener(OnPlayerCollidedWithGround);
+			GroundCollisionFilter.CollisionExit.AddListener(OnPlayerStoppedCollidingWithGround);
 		}
 
 		private void DetachFromEvents()
 		{
-			PlayerInput.Actions.Movement.Walk.performed -= OnPlayerWalk;
-			PlayerInput.Actions.Movement.Walk.canceled -= OnPlayerStopWalk;
-			PlayerInput.Actions.Movement.Jump.performed -= OnPlayerJump;
+			InputManager.Actions.Movement.Walk.performed -= OnPlayerWalk;
+			InputManager.Actions.Movement.Walk.canceled -= OnPlayerStopWalk;
+			InputManager.Actions.Movement.Jump.performed -= OnPlayerJump;
+
+			GroundCollisionFilter.CollisionEnter.RemoveListener(OnPlayerCollidedWithGround);
+			GroundCollisionFilter.CollisionExit.RemoveListener(OnPlayerStoppedCollidingWithGround);
 		}
 
 		private void OnPlayerWalk(InputAction.CallbackContext actionValue)
@@ -78,7 +84,20 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 
 		private void OnPlayerJump(InputAction.CallbackContext inputValue)
 		{
-			PlayerRigidbody.AddForce(JumpPower * Vector3.up, ForceMode.Impulse);
+			if (IsGrounded)
+			{
+				PlayerRigidbody.AddForce(JumpPower * Vector3.up, ForceMode.Impulse);
+			}
+		}
+
+		private void OnPlayerCollidedWithGround(Collision collision)
+		{
+			IsGrounded = true;
+		}
+
+		private void OnPlayerStoppedCollidingWithGround(Collision collision)
+		{
+			IsGrounded = false;
 		}
 	}
 }
