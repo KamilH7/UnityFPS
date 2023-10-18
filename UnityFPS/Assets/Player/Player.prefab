@@ -166,7 +166,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5110884908286992329}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: eee919d0b8a2d2847b290896d2234ac5, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -281,6 +281,7 @@ MonoBehaviour:
   <PlayerTransform>k__BackingField: {fileID: 1968780317807151318}
   <InvertUpDownAxis>k__BackingField: 1
   <LookSensitivity>k__BackingField: 10
+  <CameraSmoothness>k__BackingField: 0
   <MaxLookAngle>k__BackingField: 85
 --- !u!1 &5884172560505424247
 GameObject:
@@ -454,7 +455,7 @@ MonoBehaviour:
   <GroundCollisionFilter>k__BackingField: {fileID: 5409611262429568595}
   <Speed>k__BackingField: 5
   <JumpPower>k__BackingField: 500
-  <MoveVector>k__BackingField: {x: 0, y: 0, z: 0}
+  <CurrentInput>k__BackingField: {x: 0, y: 0}
   <IsGrounded>k__BackingField: 0
 --- !u!1 &8854131352456567755
 GameObject:
