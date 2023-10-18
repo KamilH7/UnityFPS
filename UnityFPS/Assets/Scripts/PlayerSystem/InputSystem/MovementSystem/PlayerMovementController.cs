@@ -21,7 +21,7 @@ namespace UnityFPS.PlayerSystem.InputSystem.MovementSystem
 
 		[field: Header("Runtime Values")]
 		[field: SerializeField, ReadOnly]
-		private Vector3 MoveVector { get; set; }
+		private Vector2 CurrentInput { get; set; }
 		[field: SerializeField, ReadOnly]
 		private bool IsGrounded { get; set; } = true;
 
@@ -37,17 +37,14 @@ namespace UnityFPS.PlayerSystem.InputSystem.MovementSystem
 
 		private void Update()
 		{
-			ApplyMoveVector();
+			ApplyInput();
 		}
 
-		private void ApplyMoveVector()
+		private void ApplyInput()
 		{
-			Vector3 currentVelocity = PlayerRigidbody.velocity;
-
-			float newXVelocity = Mathf.Abs(MoveVector.x) > Mathf.Abs(currentVelocity.x) ? MoveVector.x : currentVelocity.x;
-			float newZVelocity = Mathf.Abs(MoveVector.z) > Mathf.Abs(currentVelocity.z) ? MoveVector.z : currentVelocity.z;
-
-			PlayerRigidbody.velocity = new Vector3(newXVelocity, currentVelocity.y, newZVelocity);
+			Vector3 newVelocity = TranslateInputToLocalDirection() * Speed * CurrentInput.magnitude;
+			newVelocity.y = PlayerRigidbody.velocity.y;
+			PlayerRigidbody.velocity = newVelocity;
 		}
 
 		private void AttachToEvents()
@@ -72,14 +69,12 @@ namespace UnityFPS.PlayerSystem.InputSystem.MovementSystem
 
 		private void OnPlayerWalk(InputAction.CallbackContext actionValue)
 		{
-			Vector2 input = actionValue.ReadValue<Vector2>();
-			Vector3 moveDirection = new Vector3(input.x, 0, input.y);
-			MoveVector = moveDirection * Speed;
+			CurrentInput = actionValue.ReadValue<Vector2>();
 		}
 
 		private void OnPlayerStopWalk(InputAction.CallbackContext actionValue)
 		{
-			MoveVector = Vector3.zero;
+			CurrentInput = Vector2.zero;
 		}
 
 		private void OnPlayerJump(InputAction.CallbackContext inputValue)
@@ -98,6 +93,16 @@ namespace UnityFPS.PlayerSystem.InputSystem.MovementSystem
 		private void OnPlayerStoppedCollidingWithGround(Collision collision)
 		{
 			IsGrounded = false;
+		}
+
+		private Vector3 TranslateInputToLocalDirection()
+		{
+			Vector3 localDirectionBasedOnInput = Vector3.zero;
+
+			localDirectionBasedOnInput += (CurrentInput.y > 0 ? transform.forward : -transform.forward) * Mathf.Abs(CurrentInput.y);
+			localDirectionBasedOnInput += (CurrentInput.x > 0 ? transform.right : -transform.right) * Mathf.Abs(CurrentInput.x);
+
+			return localDirectionBasedOnInput;
 		}
 	}
 }

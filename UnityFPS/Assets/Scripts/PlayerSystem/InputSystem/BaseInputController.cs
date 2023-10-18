@@ -11,14 +11,7 @@ namespace UnityFPS.PlayerSystem.InputSystem
             InputManager = playerInputManager;
         }
 
-        public virtual void EnableInput()
-		{
-
-		}
-
-        public virtual void DisableInput()
-        {
-
-        }
+        public abstract void EnableInput();
+        public abstract void DisableInput();
     }
 }

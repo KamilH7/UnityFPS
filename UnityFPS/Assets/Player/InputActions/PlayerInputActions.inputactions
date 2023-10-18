@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Walk",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "a6dafcdd-7789-486f-9d75-e3b7d4c90533",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -143,6 +143,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Camera",
+            "id": "019973eb-9191-4d7a-bebd-68154d0a0823",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "a72ddf82-0a8a-4da1-9379-3a7e74a4fb46",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "eae4bf33-fe27-45ad-a72b-c12521027a16",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
