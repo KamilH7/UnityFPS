@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityFPS.PlayerSystem.InputSystem;
 
-namespace UnityFPS.PlayerSystem.InputSystem.CameraSystem
+namespace UnityFPS.PlayerSystem.CameraSystem
 {
     public class CameraMovementController : BaseInputController
     {

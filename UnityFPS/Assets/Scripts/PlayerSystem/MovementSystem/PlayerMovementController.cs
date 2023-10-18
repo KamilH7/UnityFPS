@@ -1,9 +1,10 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityFPS.PlayerSystem.InputSystem;
 using UnityFPS.Tools.CollisionDetection;
 
-namespace UnityFPS.PlayerSystem.InputSystem.MovementSystem
+namespace UnityFPS.PlayerSystem.MovementSystem
 {
 	public class PlayerMovementController : BaseInputController
 	{
