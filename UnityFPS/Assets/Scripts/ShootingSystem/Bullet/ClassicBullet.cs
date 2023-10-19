@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityFPS.DamageSystem;
 
-namespace UnityFPS.PlayerSystem.ShootingSystem
+namespace UnityFPS.ShootingSystem
 {
     public class ClassicBullet : BaseBullet
     {

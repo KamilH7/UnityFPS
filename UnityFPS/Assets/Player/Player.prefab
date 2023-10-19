@@ -331,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InputControllers>k__BackingField:
   - {fileID: 6979416942918901081}
+  - {fileID: 4133027718142887069}
 --- !u!1 &7317461045889029589
 GameObject:
   m_ObjectHideFlags: 0

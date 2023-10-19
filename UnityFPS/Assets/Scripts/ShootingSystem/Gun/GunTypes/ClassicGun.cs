@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace UnityFPS.PlayerSystem.ShootingSystem
+namespace UnityFPS.ShootingSystem
 {
     public class ClassicGun : BaseGun
     {

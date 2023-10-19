@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UnityFPS.PlayerSystem.ShootingSystem
+namespace UnityFPS.ShootingSystem
 {
     public class ShootingPoint : MonoBehaviour
     {

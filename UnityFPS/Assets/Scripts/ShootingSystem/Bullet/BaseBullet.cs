@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityFPS.DamageSystem;
 using UnityFPS.Tools.CollisionDetection;
 
-namespace UnityFPS.PlayerSystem.ShootingSystem
+namespace UnityFPS.ShootingSystem
 {
     public abstract class BaseBullet : MonoBehaviour
     {

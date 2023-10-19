@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityFPS.Tools.ReactiveVariable;
 
-namespace UnityFPS.PlayerSystem.ShootingSystem
+namespace UnityFPS.ShootingSystem
 {
     public abstract class BaseGun : MonoBehaviour
     {
