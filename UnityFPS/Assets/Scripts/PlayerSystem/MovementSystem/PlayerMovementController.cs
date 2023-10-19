@@ -26,16 +26,6 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 		[field: SerializeField, ReadOnly]
 		private bool IsGrounded { get; set; } = true;
 
-		public override void EnableInput()
-		{
-			AttachToEvents();
-		}
-
-		public override void DisableInput()
-		{
-			DetachFromEvents();
-		}
-
 		private void Update()
 		{
 			ApplyInput();
@@ -48,7 +38,7 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 			PlayerRigidbody.velocity = newVelocity;
 		}
 
-		private void AttachToEvents()
+		protected override void AttachToInputEvents()
 		{
 			InputManager.Actions.Movement.Walk.performed += OnPlayerWalk;
 			InputManager.Actions.Movement.Walk.canceled += OnPlayerStopWalk;
@@ -58,7 +48,7 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 			GroundCollisionFilter.CollisionExit.AddListener(OnPlayerStoppedCollidingWithGround);
 		}
 
-		private void DetachFromEvents()
+		protected override void DetachFromInputEvents()
 		{
 			InputManager.Actions.Movement.Walk.performed -= OnPlayerWalk;
 			InputManager.Actions.Movement.Walk.canceled -= OnPlayerStopWalk;

@@ -24,22 +24,24 @@ namespace UnityFPS.PlayerSystem.CameraSystem
 
         public override void EnableInput()
         {
+            base.EnableInput();
+
             Cursor.lockState = CursorLockMode.Locked;
-            AttachToEvents();
         }
 
         public override void DisableInput()
 		{
+            base.DisableInput();
+
             Cursor.lockState = CursorLockMode.None;
-            DetachFromEvents();
         }
 
-        private void AttachToEvents()
+        protected override void AttachToInputEvents()
 		{
             InputManager.Actions.Camera.Look.performed += OnPlayerLook;
         }
 
-        private void DetachFromEvents()
+        protected override void DetachFromInputEvents()
 		{
             InputManager.Actions.Camera.Look.performed -= OnPlayerLook;
         }
