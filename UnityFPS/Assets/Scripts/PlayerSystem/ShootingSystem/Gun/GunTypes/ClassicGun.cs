@@ -3,23 +3,27 @@ using UnityEngine;
 
 namespace UnityFPS.PlayerSystem.ShootingSystem
 {
-    public abstract class BaseReloadableGun : BaseGun
+    public class ClassicGun : BaseGun
     {
+        [field: Header("Classic Settings")]
         [field: SerializeField]
         protected float ReloadTime { get; set; }
+        [field: SerializeField]
+        protected float BasePower { get; set; }
+        [field: SerializeField]
+        protected float BaseDamage { get; set; }
 
-        protected bool IsRealoadig { get; set; }
+        protected bool IsReloadig { get; set; }
 
         public override void ShootInputStarted()
 		{
 			base.ShootInputStarted();
 
-            if (IsRealoadig == true)
-            {
-                return;
-            }
+            if(IsReloadig == false && HasAmmo() == true)
+			{
+                ShootOnce();
+			}      
         }
-
 
 		public override void RealoadInput()
 		{
@@ -31,11 +35,17 @@ namespace UnityFPS.PlayerSystem.ShootingSystem
             }
         }
 
+        protected virtual void ShootOnce()
+		{
+            InstantiateBullet(BasePower, BaseDamage);
+            CurrentLoadedAmmo.Value -= 1;
+        }
+
 		protected virtual IEnumerator ReloadCoroutine()
         {
-            IsRealoadig = true;
+            IsReloadig = true;
             yield return new WaitForSeconds(ReloadTime);
-            IsRealoadig = false;
+            IsReloadig = false;
         }
 
         protected void ApplyReloadedAmmo()
@@ -54,5 +64,10 @@ namespace UnityFPS.PlayerSystem.ShootingSystem
                 CurrentReserveAmmo.Value = newReserveAmmo;
             }
         }
+
+        protected bool HasAmmo()
+		{
+            return CurrentLoadedAmmo.Value > 0;
+		}
     }
 }

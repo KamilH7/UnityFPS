@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityFPS.Tools.ReactiveVariable;
 
@@ -22,9 +23,26 @@ namespace UnityFPS.PlayerSystem.ShootingSystem
         [field: SerializeField]
         protected float MinTimeBetweenShots { get; set; }
 
+        protected bool IsShootingOnCooldown { get; set; } = false;
+
+        protected WaitForSeconds ShootCooldownYieldInstruction { get; set; }
+
+        public virtual void Initialize()
+		{
+            CurrentLoadedAmmo.Value = MagazineSize;
+            CurrentReserveAmmo.Value = MaxReserveAmmo;
+
+            ShootCooldownYieldInstruction = new WaitForSeconds(MinTimeBetweenShots);
+        }
+
         public virtual void ShootInputStarted()
 		{
+			if (IsShootingOnCooldown)
+			{
+                return;
+			}
 
+            StartCoroutine(ShootCooldownCoroutine());
 		}
 
         public virtual void ShootInputStopped()
@@ -36,5 +54,18 @@ namespace UnityFPS.PlayerSystem.ShootingSystem
 		{
 
 		}
+
+        protected virtual IEnumerator ShootCooldownCoroutine()
+        {
+            IsShootingOnCooldown = true;
+            yield return ShootCooldownYieldInstruction;
+            IsShootingOnCooldown = false;
+        }
+
+        protected virtual void InstantiateBullet(float power, float damage)
+		{
+            Instantiate(BulletPrefab);
+            BulletPrefab.Initialize(BulletShootingPoint, power, damage);
+        }
     }
 }   
