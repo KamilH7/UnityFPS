@@ -6,8 +6,8 @@ namespace UnityFPS.ShootingSystem
 {
     public abstract class BaseGun : MonoBehaviour
     {
-        public IntReactiveVariable CurrentLoadedAmmo { get; private set; }
-        public IntReactiveVariable CurrentReserveAmmo { get; private set; }
+        public IntReactiveVariable CurrentLoadedAmmo { get; private set; } = new IntReactiveVariable();
+        public IntReactiveVariable CurrentReserveAmmo { get; private set; } = new IntReactiveVariable();
 
         [field: Header("Base References")]
         [field: SerializeField]
