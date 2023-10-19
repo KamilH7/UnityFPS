@@ -1,8 +1,8 @@
-using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace UnityFPS.PlayerSystem.InputSystem
 {
-    public abstract class BaseInputController : MonoBehaviour
+    public abstract class BaseInputController : SerializedMonoBehaviour
     {
         protected PlayerInputManager InputManager { get; set; }
 
