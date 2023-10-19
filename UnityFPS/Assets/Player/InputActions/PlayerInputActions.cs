@@ -197,6 +197,114 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Gun"",
+            ""id"": ""51710e1d-ac2d-439a-94da-0d841a4f70e0"",
+            ""actions"": [
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c6f93ac-a83b-4ef4-bc4f-9e56bec1cb52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""a0230ed0-5c1d-4b57-a3f0-e5559a623051"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GunSlot1"",
+                    ""type"": ""Button"",
+                    ""id"": ""931ceff1-1584-4041-b93c-b6506daaf952"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GunSlot2"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ae3c9de-cada-4782-a4cb-2c39ef31293d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GunSlot3"",
+                    ""type"": ""Button"",
+                    ""id"": ""06e43bdf-0682-4309-80da-f93da4d5e25b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6529f7dd-891d-4f64-b9bf-0e6a3a81069d"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunSlot2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""903c9d04-e800-46a8-983c-8eb06c0cad01"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunSlot3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19a9ca66-5e53-4230-b67b-63b3cc6fbd2f"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""833ea4a9-9ffd-4aaf-9fb1-f0f6e69d427e"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunSlot1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c75c744e-36bf-4bb7-abe2-68add9806789"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -208,6 +316,13 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
+        // Gun
+        m_Gun = asset.FindActionMap("Gun", throwIfNotFound: true);
+        m_Gun_Reload = m_Gun.FindAction("Reload", throwIfNotFound: true);
+        m_Gun_Shoot = m_Gun.FindAction("Shoot", throwIfNotFound: true);
+        m_Gun_GunSlot1 = m_Gun.FindAction("GunSlot1", throwIfNotFound: true);
+        m_Gun_GunSlot2 = m_Gun.FindAction("GunSlot2", throwIfNotFound: true);
+        m_Gun_GunSlot3 = m_Gun.FindAction("GunSlot3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +452,71 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // Gun
+    private readonly InputActionMap m_Gun;
+    private IGunActions m_GunActionsCallbackInterface;
+    private readonly InputAction m_Gun_Reload;
+    private readonly InputAction m_Gun_Shoot;
+    private readonly InputAction m_Gun_GunSlot1;
+    private readonly InputAction m_Gun_GunSlot2;
+    private readonly InputAction m_Gun_GunSlot3;
+    public struct GunActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public GunActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Reload => m_Wrapper.m_Gun_Reload;
+        public InputAction @Shoot => m_Wrapper.m_Gun_Shoot;
+        public InputAction @GunSlot1 => m_Wrapper.m_Gun_GunSlot1;
+        public InputAction @GunSlot2 => m_Wrapper.m_Gun_GunSlot2;
+        public InputAction @GunSlot3 => m_Wrapper.m_Gun_GunSlot3;
+        public InputActionMap Get() { return m_Wrapper.m_Gun; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GunActions set) { return set.Get(); }
+        public void SetCallbacks(IGunActions instance)
+        {
+            if (m_Wrapper.m_GunActionsCallbackInterface != null)
+            {
+                @Reload.started -= m_Wrapper.m_GunActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_GunActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_GunActionsCallbackInterface.OnReload;
+                @Shoot.started -= m_Wrapper.m_GunActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_GunActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_GunActionsCallbackInterface.OnShoot;
+                @GunSlot1.started -= m_Wrapper.m_GunActionsCallbackInterface.OnGunSlot1;
+                @GunSlot1.performed -= m_Wrapper.m_GunActionsCallbackInterface.OnGunSlot1;
+                @GunSlot1.canceled -= m_Wrapper.m_GunActionsCallbackInterface.OnGunSlot1;
+                @GunSlot2.started -= m_Wrapper.m_GunActionsCallbackInterface.OnGunSlot2;
+                @GunSlot2.performed -= m_Wrapper.m_GunActionsCallbackInterface.OnGunSlot2;
+                @GunSlot2.canceled -= m_Wrapper.m_GunActionsCallbackInterface.OnGunSlot2;
+                @GunSlot3.started -= m_Wrapper.m_GunActionsCallbackInterface.OnGunSlot3;
+                @GunSlot3.performed -= m_Wrapper.m_GunActionsCallbackInterface.OnGunSlot3;
+                @GunSlot3.canceled -= m_Wrapper.m_GunActionsCallbackInterface.OnGunSlot3;
+            }
+            m_Wrapper.m_GunActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @GunSlot1.started += instance.OnGunSlot1;
+                @GunSlot1.performed += instance.OnGunSlot1;
+                @GunSlot1.canceled += instance.OnGunSlot1;
+                @GunSlot2.started += instance.OnGunSlot2;
+                @GunSlot2.performed += instance.OnGunSlot2;
+                @GunSlot2.canceled += instance.OnGunSlot2;
+                @GunSlot3.started += instance.OnGunSlot3;
+                @GunSlot3.performed += instance.OnGunSlot3;
+                @GunSlot3.canceled += instance.OnGunSlot3;
+            }
+        }
+    }
+    public GunActions @Gun => new GunActions(this);
     public interface IMovementActions
     {
         void OnWalk(InputAction.CallbackContext context);
@@ -345,5 +525,13 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public interface ICameraActions
     {
         void OnLook(InputAction.CallbackContext context);
+    }
+    public interface IGunActions
+    {
+        void OnReload(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnGunSlot1(InputAction.CallbackContext context);
+        void OnGunSlot2(InputAction.CallbackContext context);
+        void OnGunSlot3(InputAction.CallbackContext context);
     }
 }
