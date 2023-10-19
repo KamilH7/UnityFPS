@@ -10,7 +10,8 @@ namespace UnityFPS.ShootingSystem
 		private void OnDrawGizmos()
 		{
 			Gizmos.color = Color.green;
-			Gizmos.DrawLine(transform.position, transform.forward * 5);
+			Gizmos.DrawSphere(transform.position, 0.02f);
+			Gizmos.DrawLine(transform.position, transform.position + transform.forward);
 		}
 	}
 }
