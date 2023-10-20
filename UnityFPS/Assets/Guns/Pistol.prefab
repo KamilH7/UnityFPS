@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4619766118848055890}
   - component: {fileID: 4725862313042733997}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ MonoBehaviour:
   <MaxReserveAmmo>k__BackingField: 48
   <MinTimeBetweenShots>k__BackingField: 0.2
   <ReloadTime>k__BackingField: 1
-  <BasePower>k__BackingField: 100
+  <BasePower>k__BackingField: 50
   <BaseDamage>k__BackingField: 10
 --- !u!1 &5262182949858825775
 GameObject:
@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5953644227022228772}
   - component: {fileID: 453894760879199384}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4027794661639650770}
   - component: {fileID: 2599605381693080435}
   - component: {fileID: 6859827435803227884}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1386379328146167007}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 7381437991442629171}
   - component: {fileID: 8828685788459483672}
   - component: {fileID: 6460522110913523965}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}

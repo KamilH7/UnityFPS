@@ -70,8 +70,7 @@ namespace UnityFPS.ShootingSystem
 
         protected virtual void InstantiateBullet(float power, float damage)
 		{
-            Instantiate(BulletPrefab);
-            BulletPrefab.Initialize(BulletShootingPoint, power, damage);
+            Instantiate(BulletPrefab).Initialize(BulletShootingPoint, power, damage);
         }
     }
 }   

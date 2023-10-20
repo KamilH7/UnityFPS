@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9079664355092982494}
   - component: {fileID: 3831806193597710725}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyCollisionFilter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 5677394110346507153}
   - component: {fileID: 6309471532223370297}
   - component: {fileID: 8059841628822060736}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BaseBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2079417883508262582}
   - component: {fileID: 7959304697235860658}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ObstacleCollisionFilter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6224658050232807264}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MeshContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
