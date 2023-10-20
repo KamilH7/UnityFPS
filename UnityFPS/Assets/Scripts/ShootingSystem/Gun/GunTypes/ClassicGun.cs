@@ -45,6 +45,7 @@ namespace UnityFPS.ShootingSystem
         {
             IsReloadig = true;
             yield return new WaitForSeconds(ReloadTime);
+            ApplyReloadedAmmo();
             IsReloadig = false;
         }
 
@@ -55,7 +56,7 @@ namespace UnityFPS.ShootingSystem
 
             if (newReserveAmmo < 0)
             {
-                CurrentLoadedAmmo.Value = MagazineSize - newReserveAmmo;
+                CurrentLoadedAmmo.Value = MagazineSize + newReserveAmmo;
                 CurrentReserveAmmo.Value = 0;
             }
             else
