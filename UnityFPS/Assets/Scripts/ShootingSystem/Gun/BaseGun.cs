@@ -4,10 +4,15 @@ using UnityFPS.Tools.ReactiveVariable;
 
 namespace UnityFPS.ShootingSystem
 {
-    public abstract class BaseGun : MonoBehaviour
+    public abstract class BaseGun : MonoBehaviour, IGunData
     {
-        public IntReactiveVariable CurrentLoadedAmmo { get; private set; } = new IntReactiveVariable();
-        public IntReactiveVariable CurrentReserveAmmo { get; private set; } = new IntReactiveVariable();
+        public IObservableVariable<int> CurrentLoadedAmmoObservable { get => CurrentLoadedAmmo; }
+        public IObservableVariable<int> CurrentReserveAmmoObservable { get => CurrentReserveAmmo; }
+
+        [field: SerializeField]
+        public string GunName { get; protected set; }
+        [field: SerializeField]
+        public Sprite GunIcon { get; protected set; }
 
         [field: Header("Base References")]
         [field: SerializeField]
@@ -23,11 +28,12 @@ namespace UnityFPS.ShootingSystem
         [field: SerializeField]
         protected float MinTimeBetweenShots { get; set; }
 
+        protected IntReactiveVariable CurrentLoadedAmmo { get; set; } = new IntReactiveVariable();
+        protected IntReactiveVariable CurrentReserveAmmo { get; set; } = new IntReactiveVariable();
         protected bool IsShootingOnCooldown { get; set; } = false;
-
         protected WaitForSeconds ShootCooldownYieldInstruction { get; set; }
 
-        public virtual void Initialize()
+		public virtual void Initialize()
 		{
             CurrentLoadedAmmo.Value = MagazineSize;
             CurrentReserveAmmo.Value = MaxReserveAmmo;

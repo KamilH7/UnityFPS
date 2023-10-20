@@ -1,6 +1,6 @@
 namespace UnityFPS.ShootingSystem
 {
-    public enum GunSlot
+    public enum GunSlotNumber
     {
         SLOT_1,
         SLOT_2,

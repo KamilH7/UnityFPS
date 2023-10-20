@@ -1,28 +1,38 @@
 using Sirenix.Serialization;
+using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityFPS.PlayerSystem.InputSystem;
-using UnityFPS.Tools.ReactiveVariable;
 
 namespace UnityFPS.ShootingSystem
 {
-	public class GunManager : BaseInputController
+	public class PlayerGunManager : BaseInputController
 	{
-		public IObservableVariable<BaseGun> CurrentGunObservableVariable { get => CurrentGun; }
+		public event Action<GunSlotNumber, IGunData> OnCurrentGunChanged;
+		public IGunData CurrentGunData => CurrentGun;
+		public GunSlotNumber CurrentGunSlot { get; private set; }
 
 		[OdinSerialize]
-		private Dictionary<GunSlot, BaseGun> GunBySlotMap { get; set; }
+		private Dictionary<GunSlotNumber, BaseGun> GunBySlotMap { get; set; }
+		private BaseGun CurrentGun { get; set; }
 
-		private BaseGunReactiveVariable CurrentGun { get; set; } = new BaseGunReactiveVariable();
+
+		public IEnumerable<(GunSlotNumber, IGunData)> GetGunDatas()
+		{
+			foreach (KeyValuePair<GunSlotNumber, BaseGun> gunBySlot in GunBySlotMap)
+			{
+				yield return (gunBySlot.Key, gunBySlot.Value);
+			}
+		}
 
 		private void Awake()
 		{
-			foreach (var gun in GunBySlotMap)
+			foreach (KeyValuePair<GunSlotNumber, BaseGun> gun in GunBySlotMap)
 			{
 				gun.Value.Initialize();
 			}
 
-			ChooseGun(GunSlot.SLOT_1);
+			ChooseGun(GunSlotNumber.SLOT_1);
 		}
 
 		protected override void AttachToInputEvents()
@@ -47,43 +57,48 @@ namespace UnityFPS.ShootingSystem
 
 		private void OnRealoadInput(InputAction.CallbackContext actionValue)
 		{
-			CurrentGun.Value.RealoadInput();
+			CurrentGun.RealoadInput();
 		}
 
 		private void OnShootInputStarted(InputAction.CallbackContext actionValue)
 		{
-			CurrentGun.Value.ShootInputStarted();
+			CurrentGun.ShootInputStarted();
 		}
 
 		private void OnShootInputStopped(InputAction.CallbackContext actionValue)
 		{
-			CurrentGun.Value.ShootInputStopped();
+			CurrentGun.ShootInputStopped();
 		}
 
 		private void OnSlotOneInput(InputAction.CallbackContext actionValue)
 		{
-			ChooseGun(GunSlot.SLOT_1);
+			ChooseGun(GunSlotNumber.SLOT_1);
 		}
 
 		private void OnSlotTwoInput(InputAction.CallbackContext actionValue)
 		{
-			ChooseGun(GunSlot.SLOT_2);
+			ChooseGun(GunSlotNumber.SLOT_2);
 		}
 
 		private void OnSlotThreeInput(InputAction.CallbackContext actionValue)
 		{
-			ChooseGun(GunSlot.SLOT_3);
+			ChooseGun(GunSlotNumber.SLOT_3);
 		}
 
-		private void ChooseGun(GunSlot gunSlot)
+		private void ChooseGun(GunSlotNumber gunSlot)
 		{
-			if (CurrentGun.Value != null)
+			CurrentGunSlot = gunSlot;
+
+			if (CurrentGun != null)
 			{
-				HideGun(CurrentGun.Value);
+				HideGun(CurrentGun);
 			}
 
-			CurrentGun.Value = GunBySlotMap[gunSlot];
-			ShowGun(CurrentGun.Value);
+			CurrentGun = GunBySlotMap[gunSlot];
+
+			ShowGun(CurrentGun);
+
+			OnCurrentGunChanged?.Invoke(CurrentGunSlot, CurrentGun);
 		}
 
 		private void HideGun(BaseGun gun)
