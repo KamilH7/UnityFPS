@@ -436,11 +436,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: GunBySlotMap
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[UnityFPS.ShootingSystem.GunSlot,
+      Data: 0|System.Collections.Generic.Dictionary`2[[UnityFPS.ShootingSystem.GunSlotNumber,
         Assembly-CSharp],[UnityFPS.ShootingSystem.BaseGun, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[UnityFPS.ShootingSystem.GunSlot,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[UnityFPS.ShootingSystem.GunSlotNumber,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -753,6 +753,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 3711207075472584975, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711207075472584975, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711207075472584975, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711207075472584975, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302043055683476998, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302043055683476998, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302043055683476998, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302043055683476998, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5175037498380581306, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5175037498380581306, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
     - target: {fileID: 7226184379421115654, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -835,6 +871,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7226184379421115654, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7383921553178009107, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: <GunManager>k__BackingField
+      value: 
+      objectReference: {fileID: 7435175323702275565}
+    - target: {fileID: 7383921553178009107, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: <PlayerGunManager>k__BackingField
+      value: 
+      objectReference: {fileID: 7435175323702275565}
+    - target: {fileID: 9155219668601418671, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155219668601418671, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155219668601418671, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155219668601418671, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

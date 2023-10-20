@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6de771ead5fc5741b482e5fedbe9df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <GunName>k__BackingField: Pistol
+  <GunIcon>k__BackingField: {fileID: 21300000, guid: 948237f5dcbd3654b9eae2bcaea4c4a1, type: 3}
   <BulletPrefab>k__BackingField: {fileID: 7616070369925973085, guid: 8ee54900496f5e54485660eaca2e7edc, type: 3}
   <BulletShootingPoint>k__BackingField: {fileID: 453894760879199384}
   <MagazineSize>k__BackingField: 12
