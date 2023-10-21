@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityFPS.Tools.ReactiveVariable;
 
 namespace UnityFPS.DamageSystem
@@ -16,6 +17,8 @@ namespace UnityFPS.DamageSystem
 		public MaterialType MaterialType { get; private set; }
 		[field: SerializeField]
 		public float MaxHealth { get; private set; }
+		[field: SerializeField]
+		private UnityEvent OnDeath { get; set; }
 
 		protected FloatReactiveVariable Health { get; set; } = new FloatReactiveVariable();
 
@@ -31,8 +34,9 @@ namespace UnityFPS.DamageSystem
 
 			if(Health.Value <= 0)
 			{
+				OnDeath.Invoke();
 				Destroy(gameObject);
 			}
-		}
+		}	
     }
 }
