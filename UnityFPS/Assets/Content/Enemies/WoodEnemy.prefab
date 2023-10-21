@@ -59,5 +59,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5451149693306514822, guid: a7a682aa1855feb43aa33cb7b6f6157a, type: 3}
+      propertyPath: <MaxHealth>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7a682aa1855feb43aa33cb7b6f6157a, type: 3}

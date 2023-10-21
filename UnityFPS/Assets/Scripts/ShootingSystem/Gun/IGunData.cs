@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityFPS.DamageSystem;
 using UnityFPS.Tools.ReactiveVariable;
 
 namespace UnityFPS.ShootingSystem

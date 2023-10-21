@@ -7,15 +7,21 @@ namespace UnityFPS.DamageSystem
     {
 		public IObservableVariable<float> HealthObservableVariable { get => Health; }
 
+		[field: Header("References")]
 		[field: SerializeField]
-		public MaterialType MaterialType { get; protected set; }
+		private HealthBarController HealthBar { get; set; }
+
+		[field: Header("Settings")]
 		[field: SerializeField]
-		protected float MaxHealth { get; set; }
+		public MaterialType MaterialType { get; private set; }
+		[field: SerializeField]
+		public float MaxHealth { get; private set; }
 
 		protected FloatReactiveVariable Health { get; set; } = new FloatReactiveVariable();
 
 		private void OnEnable()
 		{
+			HealthBar.Initialize(this);
 			Health.Value = MaxHealth;
 		}
 

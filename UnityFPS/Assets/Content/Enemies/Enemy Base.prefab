@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7102225332363646126}
   - component: {fileID: 755315492987665075}
   - component: {fileID: 536298014961041872}
+  - component: {fileID: 9201656678502993857}
   m_Layer: 8
   m_Name: Lifebar
   m_TagString: Untagged
@@ -28,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 2476945797691210999}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: -1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6208486721485239997}
@@ -102,6 +103,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 1015
+--- !u!114 &9201656678502993857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2476945797691210999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76f4c83e16d5f24d8c7d7122e5a7970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <HealthFillImage>k__BackingField: {fileID: 6767569236449195613}
 --- !u!1 &3381569959923075603
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +263,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.387
+  m_FillAmount: 0.5
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -365,5 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022464316d9300245896a2a48c2415e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <HealthBar>k__BackingField: {fileID: 9201656678502993857}
   <MaterialType>k__BackingField: 0
   <MaxHealth>k__BackingField: 20
