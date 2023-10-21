@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UnityFPS.ShootingSystem
 {
-    public class ClassicGun : BaseGun
+    public abstract class ClassicGun : BaseGun
     {
         [field: Header("Classic Settings")]
         [field: SerializeField]
@@ -18,11 +18,6 @@ namespace UnityFPS.ShootingSystem
         public override void ShootInputStarted()
 		{
 			base.ShootInputStarted();
-
-            if(IsReloadig == false && HasAmmo() == true)
-			{
-                ShootOnce();
-			}      
         }
 
 		public override void RealoadInput()
@@ -35,10 +30,16 @@ namespace UnityFPS.ShootingSystem
             }
         }
 
+        protected override bool CanShoot()
+		{
+            return base.CanShoot() && IsReloadig == false && HasAmmo() == true;
+        }
+
         protected virtual void ShootOnce()
 		{
             InstantiateBullet(BasePower, BaseDamage);
             CurrentLoadedAmmo.Value -= 1;
+            ApplyShootCooldown();
         }
 
 		protected virtual IEnumerator ReloadCoroutine()

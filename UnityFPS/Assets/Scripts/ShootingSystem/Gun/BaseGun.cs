@@ -43,13 +43,8 @@ namespace UnityFPS.ShootingSystem
 
         public virtual void ShootInputStarted()
 		{
-			if (IsShootingOnCooldown)
-			{
-                return;
-			}
 
-            StartCoroutine(ShootCooldownCoroutine());
-		}
+        }
 
         public virtual void ShootInputStopped()
 		{
@@ -60,6 +55,16 @@ namespace UnityFPS.ShootingSystem
 		{
 
 		}
+
+        protected virtual bool CanShoot()
+		{
+            return IsShootingOnCooldown == false;
+        }
+
+        protected virtual void ApplyShootCooldown()
+		{
+            StartCoroutine(ShootCooldownCoroutine());
+        }
 
         protected virtual IEnumerator ShootCooldownCoroutine()
         {
