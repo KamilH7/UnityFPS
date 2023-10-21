@@ -1,19 +1,18 @@
 using DG.Tweening;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityFPS.DamageSystem;
 using UnityFPS.Tools.ReactiveVariable;
 
 namespace UnityFPS.ShootingSystem
 {
-    public abstract class BaseGun : MonoBehaviour, IGunData
+    public abstract class BaseGun : SerializedMonoBehaviour, IGunData
     {
         public IObservableVariable<int> CurrentLoadedAmmoObservable { get => CurrentLoadedAmmo; }
         public IObservableVariable<int> CurrentReserveAmmoObservable { get => CurrentReserveAmmo; }
-
-        [field: SerializeField]
-        public string GunName { get; protected set; }
-        [field: SerializeField]
-        public Sprite GunIcon { get; protected set; }
 
         [field: Header("Base References")]
         [field: SerializeField]
@@ -22,6 +21,12 @@ namespace UnityFPS.ShootingSystem
         protected ShootingPoint BulletShootingPoint { get; set; }
 
         [field: Header("Base Settings")]
+        [field: OdinSerialize]
+        public Dictionary<MaterialType, float> DamageByMaterialsMap { get; protected set; }
+        [field: SerializeField]
+        public string GunName { get; protected set; }
+        [field: SerializeField]
+        public Sprite GunIcon { get; protected set; }
         [field: SerializeField]
         protected int MagazineSize { get; set; }
         [field: SerializeField]
@@ -74,9 +79,9 @@ namespace UnityFPS.ShootingSystem
             IsShootingOnCooldown = false;
         }
 
-        protected virtual void InstantiateBullet(float power, float damage)
+        protected virtual void InstantiateBullet(float power)
 		{
-            Instantiate(BulletPrefab).Initialize(BulletShootingPoint, power, damage);
+            Instantiate(BulletPrefab).Initialize(DamageByMaterialsMap, BulletShootingPoint, power);
         }
 
         protected virtual void ApplyGunShake(float topRotation)

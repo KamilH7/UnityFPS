@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityFPS.DamageSystem;
 using UnityFPS.Tools.CollisionDetection;
@@ -13,14 +14,14 @@ namespace UnityFPS.ShootingSystem
         protected CollisionFilter EnemyCollisionFilter { get; set; }
         [field: SerializeField]
         protected CollisionFilter ObstacleCollisionFilter { get; set; }
+        [field: SerializeField]
+        protected Dictionary<MaterialType, float> DamageByMaterialMap { get; private set; }
 
-        protected float GunHitDamage { get; set; }
-
-        public virtual void Initialize(ShootingPoint shootingPoint, float power, float damage)
+        public virtual void Initialize(Dictionary<MaterialType, float> damageByMaterialMap, ShootingPoint shootingPoint, float power)
 		{
             AttachToCollisionEvents();
             SetupBulletBody(shootingPoint, power);
-            GunHitDamage = damage;
+            DamageByMaterialMap = damageByMaterialMap;
         }
 
         protected abstract void BulletCollidedWithDamagable(IDamagable hitDamagable);
@@ -43,6 +44,18 @@ namespace UnityFPS.ShootingSystem
 		{
             Destroy(gameObject);
 		}
+
+        protected float GetDamageFromMaterial(MaterialType materialType)
+        {
+            if (DamageByMaterialMap.ContainsKey(materialType))
+            {
+                return DamageByMaterialMap[materialType];
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
         private void AttachToCollisionEvents()
         {

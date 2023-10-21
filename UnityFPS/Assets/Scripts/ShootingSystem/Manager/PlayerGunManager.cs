@@ -16,7 +16,6 @@ namespace UnityFPS.ShootingSystem
 		private Dictionary<GunSlotNumber, BaseGun> GunBySlotMap { get; set; }
 		private BaseGun CurrentGun { get; set; }
 
-
 		public IEnumerable<(GunSlotNumber, IGunData)> GetGunDatas()
 		{
 			foreach (KeyValuePair<GunSlotNumber, BaseGun> gunBySlot in GunBySlotMap)

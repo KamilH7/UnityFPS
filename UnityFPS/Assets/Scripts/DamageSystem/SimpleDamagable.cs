@@ -8,6 +8,8 @@ namespace UnityFPS.DamageSystem
 		public IObservableVariable<float> HealthObservableVariable { get => Health; }
 
 		[field: SerializeField]
+		public MaterialType MaterialType { get; protected set; }
+		[field: SerializeField]
 		protected float MaxHealth { get; set; }
 
 		protected FloatReactiveVariable Health { get; set; } = new FloatReactiveVariable();

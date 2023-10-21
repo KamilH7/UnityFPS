@@ -74,7 +74,7 @@ namespace UnityFPS.ShootingSystem
 		{
             if(CurrentCharge > 0)
 			{
-                InstantiateBullet(CurrentCharge, CurrentCharge);
+                InstantiateBullet(CurrentCharge);
                 ApplyShootCooldown();
                 ApplyGunShake(CurrentCharge);
                 CurrentCharge = 0;

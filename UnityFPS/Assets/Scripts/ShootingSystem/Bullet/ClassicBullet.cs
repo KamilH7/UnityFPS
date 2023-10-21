@@ -7,7 +7,7 @@ namespace UnityFPS.ShootingSystem
     {
         protected override void BulletCollidedWithDamagable(IDamagable hitDamagable)
         {
-            hitDamagable.Hit(GunHitDamage);
+            hitDamagable.Hit(GetDamageFromMaterial(hitDamagable.MaterialType));
             DestroyBullet();
         }
 

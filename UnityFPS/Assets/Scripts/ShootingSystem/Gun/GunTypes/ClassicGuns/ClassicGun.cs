@@ -11,8 +11,6 @@ namespace UnityFPS.ShootingSystem
         [field: SerializeField]
         protected float BasePower { get; set; }
         [field: SerializeField]
-        protected float BaseDamage { get; set; }
-        [field: SerializeField]
         protected float GunShakePower { get; set; }
 
         protected bool IsReloadig { get; set; }
@@ -39,7 +37,7 @@ namespace UnityFPS.ShootingSystem
 
         protected virtual void ShootOnce()
 		{
-            InstantiateBullet(BasePower, BaseDamage);
+            InstantiateBullet(BasePower);
             CurrentLoadedAmmo.Value -= 1;
             ApplyShootCooldown();
             ApplyGunShake(GunShakePower);

@@ -369,16 +369,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac86187061a8ad548b4ba6612e9ce453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GunName>k__BackingField: Rifle
-  <GunIcon>k__BackingField: {fileID: 21300000, guid: 893938229bf119e4eaa9962e268c86c7, type: 3}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: <DamageByMaterialsMap>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[UnityFPS.DamageSystem.MaterialType,
+        Assembly-CSharp],[System.Single, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[UnityFPS.DamageSystem.MaterialType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 4
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   <BulletPrefab>k__BackingField: {fileID: 7616070369925973085, guid: 8ee54900496f5e54485660eaca2e7edc, type: 3}
   <BulletShootingPoint>k__BackingField: {fileID: 453894760879199384}
+  <GunName>k__BackingField: Rifle
+  <GunIcon>k__BackingField: {fileID: 21300000, guid: 893938229bf119e4eaa9962e268c86c7, type: 3}
   <MagazineSize>k__BackingField: 30
   <MaxReserveAmmo>k__BackingField: 90
   <MinTimeBetweenShots>k__BackingField: 0.1
   <ReloadTime>k__BackingField: 1.5
   <BasePower>k__BackingField: 50
-  <BaseDamage>k__BackingField: 15
   <GunShakePower>k__BackingField: 5
 --- !u!1 &3198621196089363162
 GameObject:
