@@ -24,6 +24,11 @@ namespace UnityFPS.ShootingSystem
         {
             base.ShootInputStarted();
 
+            if (CanShoot() == false)
+            {
+                return;
+            }
+
             StartChargeReserveAmmoAmount = CurrentReserveAmmo.Value;
 
             if (CurrentReserveAmmo.Value < MagazineSize)
@@ -42,9 +47,8 @@ namespace UnityFPS.ShootingSystem
         {
             base.ShootInputStarted();
 
-            ShootChargedShot();
-
-            IsCharging = false;
+             ShootChargedShot();
+             IsCharging = false;
         }
 
         protected virtual void Update()
@@ -68,9 +72,14 @@ namespace UnityFPS.ShootingSystem
 
         public void ShootChargedShot()
 		{
-            InstantiateBullet(CurrentCharge, CurrentCharge);
-            CurrentCharge = 0;
-            CurrentLoadedAmmo.Value = 0;
+            if(CurrentCharge > 0)
+			{
+                InstantiateBullet(CurrentCharge, CurrentCharge);
+                ApplyShootCooldown();
+                ApplyGunShake(CurrentCharge);
+                CurrentCharge = 0;
+                CurrentLoadedAmmo.Value = 0;
+            }
         }
     }
 }

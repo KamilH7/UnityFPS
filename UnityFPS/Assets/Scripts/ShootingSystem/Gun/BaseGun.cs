@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityFPS.Tools.ReactiveVariable;
@@ -76,6 +77,19 @@ namespace UnityFPS.ShootingSystem
         protected virtual void InstantiateBullet(float power, float damage)
 		{
             Instantiate(BulletPrefab).Initialize(BulletShootingPoint, power, damage);
+        }
+
+        protected virtual void ApplyGunShake(float topRotation)
+		{
+            Quaternion initialRotation = transform.localRotation;
+
+            Tween rotateUpTween = RotateTowards(initialRotation * Quaternion.Euler(-Vector3.right * topRotation), MinTimeBetweenShots * 0.2f);
+            rotateUpTween.onComplete += () => RotateTowards(initialRotation, MinTimeBetweenShots * 0.8f);
+        }
+
+        protected Tween RotateTowards(Quaternion rotation, float rotateTime)
+		{
+            return transform.DOLocalRotateQuaternion(rotation, rotateTime);
         }
     }
 }   

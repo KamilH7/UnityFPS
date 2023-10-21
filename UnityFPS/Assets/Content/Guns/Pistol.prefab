@@ -55,6 +55,7 @@ MonoBehaviour:
   <ReloadTime>k__BackingField: 1
   <BasePower>k__BackingField: 50
   <BaseDamage>k__BackingField: 10
+  <GunShakePower>k__BackingField: 10
 --- !u!1 &5262182949858825775
 GameObject:
   m_ObjectHideFlags: 0
