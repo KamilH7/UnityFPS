@@ -12,7 +12,7 @@ namespace UnityFPS.ShootingSystem
 	{
 		public event Action<GunSlotNumber, IGunData> OnCurrentGunChanged;
 		public IGunData CurrentGunData => CurrentGun;
-		public GunSlotNumber CurrentGunSlot { get; private set; }
+		public GunSlotNumber? CurrentGunSlot { get; private set; } = null;
 		
 		[field: Header("References")]
 		[field: SerializeField]
@@ -103,6 +103,11 @@ namespace UnityFPS.ShootingSystem
 
 		private void ChooseGun(GunSlotNumber gunSlot)
 		{
+			if(gunSlot == CurrentGunSlot)
+			{
+				return;
+			}
+
 			CurrentGunSlot = gunSlot;
 
 			if (CurrentGun != null)
@@ -114,7 +119,7 @@ namespace UnityFPS.ShootingSystem
 
 			ShowGun(CurrentGun);
 
-			OnCurrentGunChanged?.Invoke(CurrentGunSlot, CurrentGun);
+			OnCurrentGunChanged?.Invoke((GunSlotNumber) CurrentGunSlot, CurrentGun);
 		}
 
 		private void HideGun(BaseGun gun)

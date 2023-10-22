@@ -18,6 +18,11 @@ namespace UnityFPS.ShootingSystem
             IsInputPressed = false;
         }
 
+        protected override void OnDisable()
+        {
+            IsInputPressed = false;
+        }
+
         protected virtual void Update()
 		{
             if (CanShoot())

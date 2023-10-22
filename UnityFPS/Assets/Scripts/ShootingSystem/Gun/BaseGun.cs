@@ -39,7 +39,7 @@ namespace UnityFPS.ShootingSystem
         protected bool IsShootingOnCooldown { get; set; } = false;
         protected WaitForSeconds ShootCooldownYieldInstruction { get; set; }
 
-		public virtual void Initialize()
+        public virtual void Initialize()
 		{
             CurrentLoadedAmmo.Value = MagazineSize;
             CurrentReserveAmmo.Value = MaxReserveAmmo;
@@ -61,6 +61,16 @@ namespace UnityFPS.ShootingSystem
 		{
 
 		}
+
+        protected virtual void OnEnable()
+        {
+            IsShootingOnCooldown = false;
+        }
+
+        protected virtual void OnDisable()
+        {
+
+        }
 
         protected virtual bool CanShoot()
 		{

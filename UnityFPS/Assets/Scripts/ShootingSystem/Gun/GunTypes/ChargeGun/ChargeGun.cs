@@ -51,6 +51,14 @@ namespace UnityFPS.ShootingSystem
              IsCharging = false;
         }
 
+        protected override void OnDisable()
+        {
+            IsCharging = false;
+            CurrentCharge = 0;
+            CurrentReserveAmmo.Value += CurrentLoadedAmmo.Value;
+            CurrentLoadedAmmo.Value = 0;
+        }
+
         protected virtual void Update()
 		{
 			if (IsCharging)
