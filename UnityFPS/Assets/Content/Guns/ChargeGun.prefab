@@ -105,7 +105,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 7
       Data: 
@@ -150,7 +150,19 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 4
-      Data: 50
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 4
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -166,7 +178,7 @@ MonoBehaviour:
   <GunIcon>k__BackingField: {fileID: 21300000, guid: f029c73ef96ab8443b0f42734e87ee44, type: 3}
   <MagazineSize>k__BackingField: 100
   <MaxReserveAmmo>k__BackingField: 1000
-  <MinTimeBetweenShots>k__BackingField: 1
+  <MinTimeBetweenShots>k__BackingField: 0.5
   <ChargePerSecond>k__BackingField: 50
 --- !u!1 &5262182949858825775
 GameObject:
