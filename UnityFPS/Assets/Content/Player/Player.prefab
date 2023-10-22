@@ -208,66 +208,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &5279273226949792021
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 667881018428842919}
-  - component: {fileID: 5409611262429568595}
-  m_Layer: 6
-  m_Name: GroundCollisionFilter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &667881018428842919
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5279273226949792021}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4372192795575154325}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5409611262429568595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5279273226949792021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d0bf11916609de4d8986f8b2015d299, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <BoundCollisionNotifier>k__BackingField: {fileID: 8032667985726153459}
-  <CollisionLayerMask>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 128
-  <CollisionEnter>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <CollisionExit>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <TriggerEnter>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <TriggerExit>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5655253917389227395
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +432,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1968780317807151318}
   - component: {fileID: 1756746900487702071}
-  - component: {fileID: 8032667985726153459}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -537,30 +476,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &8032667985726153459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7317461045889029589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2643220525d1ad94fb82b539e47a1c02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <TriggerEnter>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <TriggerExit>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <CollisionEnter>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <CollisionExit>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7439694794841562143
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +505,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 667881018428842919}
+  - {fileID: 1903462353436812689}
   m_Father: {fileID: 1968780317807151318}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -607,12 +522,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerRigidbody>k__BackingField: {fileID: 1756746900487702071}
-  <GroundCollisionFilter>k__BackingField: {fileID: 5409611262429568595}
+  <GroundDetectionRaycaster>k__BackingField: {fileID: 4579879596712934995}
   <PlayerInputManager>k__BackingField: {fileID: 2158982613889177174}
   <Speed>k__BackingField: 5
   <JumpPower>k__BackingField: 500
   <CurrentInput>k__BackingField: {x: 0, y: 0}
   <IsGrounded>k__BackingField: 0
+--- !u!1 &8588210187100711854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1903462353436812689}
+  - component: {fileID: 4579879596712934995}
+  m_Layer: 6
+  m_Name: GroundDetectionRaycaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1903462353436812689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588210187100711854}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.058, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4372192795575154325}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &4579879596712934995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588210187100711854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7a6886388a5734dbc66283c8f57043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <RaycastLayerMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 1
+  <RaycastLength>k__BackingField: 0.2
+  <OnRaycastHit>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnRaycastMissed>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8854131352456567755
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +754,10 @@ PrefabInstance:
     - target: {fileID: 4302043055683476998, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4809763569496735973, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 887
       objectReference: {fileID: 0}
     - target: {fileID: 5175037498380581306, guid: adb2aaea549bf7345b77dcc1925f0661, type: 3}
       propertyPath: serializationData.Prefab

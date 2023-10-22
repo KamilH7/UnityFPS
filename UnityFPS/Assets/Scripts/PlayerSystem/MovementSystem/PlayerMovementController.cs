@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityFPS.PlayerSystem.InputSystem;
 using UnityFPS.Tools.CollisionDetection;
+using UnityFPS.Tools.Raycaster;
 
 namespace UnityFPS.PlayerSystem.MovementSystem
 {
@@ -12,7 +13,7 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 		[field: SerializeField]
 		private Rigidbody PlayerRigidbody { get; set; }
 		[field: SerializeField]
-		private CollisionFilter GroundCollisionFilter { get; set; }
+		private SimpleRaycaster GroundDetectionRaycaster { get; set; }
 		[field: SerializeField]
 		private InputManager PlayerInputManager { get; set; }
 
@@ -56,8 +57,8 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 			PlayerInputManager.Actions.Movement.Walk.canceled += OnPlayerStopWalk;
 			PlayerInputManager.Actions.Movement.Jump.performed += OnPlayerJump;
 
-			GroundCollisionFilter.CollisionEnter.AddListener(OnPlayerCollidedWithGround);
-			GroundCollisionFilter.CollisionExit.AddListener(OnPlayerStoppedCollidingWithGround);
+			GroundDetectionRaycaster.OnRaycastHit.AddListener(OnPlayerCollidedWithGround);
+			GroundDetectionRaycaster.OnRaycastMissed.AddListener(OnPlayerStoppedCollidingWithGround);
 		}
 
 		private void DetachFromEvents()
@@ -66,8 +67,8 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 			PlayerInputManager.Actions.Movement.Walk.canceled -= OnPlayerStopWalk;
 			PlayerInputManager.Actions.Movement.Jump.performed -= OnPlayerJump;
 
-			GroundCollisionFilter.CollisionEnter.RemoveListener(OnPlayerCollidedWithGround);
-			GroundCollisionFilter.CollisionExit.RemoveListener(OnPlayerStoppedCollidingWithGround);
+			GroundDetectionRaycaster.OnRaycastHit.RemoveListener(OnPlayerCollidedWithGround);
+			GroundDetectionRaycaster.OnRaycastMissed.RemoveListener(OnPlayerStoppedCollidingWithGround);
 		}
 
 		private void OnPlayerWalk(InputAction.CallbackContext actionValue)
@@ -88,12 +89,12 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 			}
 		}
 
-		private void OnPlayerCollidedWithGround(Collision collision)
+		private void OnPlayerCollidedWithGround(Collider collision)
 		{
 			IsGrounded = true;
 		}
 
-		private void OnPlayerStoppedCollidingWithGround(Collision collision)
+		private void OnPlayerStoppedCollidingWithGround()
 		{
 			IsGrounded = false;
 		}
