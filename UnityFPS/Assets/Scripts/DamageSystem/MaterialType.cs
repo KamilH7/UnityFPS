@@ -3,8 +3,9 @@ namespace UnityFPS.DamageSystem
     public enum MaterialType
     {
         WOOD,
-        GLASS,
+        CARDBOARD,
+        RUBBER,
         METAL,
-        VIBRANIUM,
+        STONE,
     }
 }

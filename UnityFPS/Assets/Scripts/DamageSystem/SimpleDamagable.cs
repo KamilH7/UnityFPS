@@ -17,6 +17,8 @@ namespace UnityFPS.DamageSystem
 		public MaterialType MaterialType { get; private set; }
 		[field: SerializeField]
 		public float MaxHealth { get; private set; }
+
+		[field: Header("Events")]
 		[field: SerializeField]
 		private UnityEvent OnDeath { get; set; }
 
