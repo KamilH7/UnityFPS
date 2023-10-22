@@ -6,13 +6,15 @@ using UnityFPS.Tools.CollisionDetection;
 
 namespace UnityFPS.PlayerSystem.MovementSystem
 {
-	public class PlayerMovementController : BaseInputController
+	public class PlayerMovementController : MonoBehaviour
 	{
 		[field: Header("References")]
 		[field: SerializeField]
 		private Rigidbody PlayerRigidbody { get; set; }
 		[field: SerializeField]
 		private CollisionFilter GroundCollisionFilter { get; set; }
+		[field: SerializeField]
+		private InputManager PlayerInputManager { get; set; }
 
 		[field: Header("Settings")]
 		[field: SerializeField]
@@ -31,6 +33,16 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 			ApplyInput();
 		}
 
+		private void OnEnable()
+		{
+			AttachToEvents();
+		}
+
+		private void OnDisable()
+		{
+			DetachFromEvents();
+		}
+
 		private void ApplyInput()
 		{
 			Vector3 newVelocity = TranslateInputToLocalDirection() * Speed * CurrentInput.magnitude;
@@ -38,21 +50,21 @@ namespace UnityFPS.PlayerSystem.MovementSystem
 			PlayerRigidbody.velocity = newVelocity;
 		}
 
-		protected override void AttachToInputEvents()
+		private void AttachToEvents()
 		{
-			InputManager.Actions.Movement.Walk.performed += OnPlayerWalk;
-			InputManager.Actions.Movement.Walk.canceled += OnPlayerStopWalk;
-			InputManager.Actions.Movement.Jump.performed += OnPlayerJump;
+			PlayerInputManager.Actions.Movement.Walk.performed += OnPlayerWalk;
+			PlayerInputManager.Actions.Movement.Walk.canceled += OnPlayerStopWalk;
+			PlayerInputManager.Actions.Movement.Jump.performed += OnPlayerJump;
 
 			GroundCollisionFilter.CollisionEnter.AddListener(OnPlayerCollidedWithGround);
 			GroundCollisionFilter.CollisionExit.AddListener(OnPlayerStoppedCollidingWithGround);
 		}
 
-		protected override void DetachFromInputEvents()
+		private void DetachFromEvents()
 		{
-			InputManager.Actions.Movement.Walk.performed -= OnPlayerWalk;
-			InputManager.Actions.Movement.Walk.canceled -= OnPlayerStopWalk;
-			InputManager.Actions.Movement.Jump.performed -= OnPlayerJump;
+			PlayerInputManager.Actions.Movement.Walk.performed -= OnPlayerWalk;
+			PlayerInputManager.Actions.Movement.Walk.canceled -= OnPlayerStopWalk;
+			PlayerInputManager.Actions.Movement.Jump.performed -= OnPlayerJump;
 
 			GroundCollisionFilter.CollisionEnter.RemoveListener(OnPlayerCollidedWithGround);
 			GroundCollisionFilter.CollisionExit.RemoveListener(OnPlayerStoppedCollidingWithGround);

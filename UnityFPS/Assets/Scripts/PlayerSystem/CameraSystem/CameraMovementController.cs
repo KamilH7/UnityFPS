@@ -4,13 +4,15 @@ using UnityFPS.PlayerSystem.InputSystem;
 
 namespace UnityFPS.PlayerSystem.CameraSystem
 {
-    public class CameraMovementController : BaseInputController
+    public class CameraMovementController : MonoBehaviour
     {
         [field: Header("References")]
         [field: SerializeField]
         private Camera PlayerCamera { get; set; }
         [field: SerializeField]
         private Transform PlayerTransform { get; set; }
+        [field: SerializeField]
+        private InputManager PlayerInputManager { get; set; }
 
         [field: Header("Settings")]
         [field: SerializeField]
@@ -22,28 +24,27 @@ namespace UnityFPS.PlayerSystem.CameraSystem
         [field: SerializeField]
         private float MaxLookAngle { get; set; }
 
-        public override void EnableInput()
-        {
-            base.EnableInput();
-
+		private void OnEnable()
+		{
             Cursor.lockState = CursorLockMode.Locked;
+            AttachToInputEvents();
         }
 
-        public override void DisableInput()
+		private void OnDisable()
 		{
-            base.DisableInput();
-
             Cursor.lockState = CursorLockMode.None;
+            DetachFromInputEvents();
         }
 
-        protected override void AttachToInputEvents()
+
+        private void AttachToInputEvents()
 		{
-            InputManager.Actions.Camera.Look.performed += OnPlayerLook;
+            PlayerInputManager.Actions.Camera.Look.performed += OnPlayerLook;
         }
 
-        protected override void DetachFromInputEvents()
+        private void DetachFromInputEvents()
 		{
-            InputManager.Actions.Camera.Look.performed -= OnPlayerLook;
+            PlayerInputManager.Actions.Camera.Look.performed -= OnPlayerLook;
         }
 
         private void OnPlayerLook(InputAction.CallbackContext actionValue)
