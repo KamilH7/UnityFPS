@@ -2,7 +2,7 @@ using System;
 
 namespace UnityFPS.Tools.ReactiveVariable
 {
-    public abstract class ReactiveVariable<T> : IObservableVariable<T>
+    public class ReactiveVariable<T> : IObservableVariable<T>
     {
         public Action<T> OnValueChanged { get; set; }
 

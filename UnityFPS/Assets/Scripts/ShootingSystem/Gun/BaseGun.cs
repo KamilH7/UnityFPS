@@ -34,8 +34,8 @@ namespace UnityFPS.ShootingSystem
         [field: SerializeField]
         protected float MinTimeBetweenShots { get; set; }
 
-        protected IntReactiveVariable CurrentLoadedAmmo { get; set; } = new IntReactiveVariable();
-        protected IntReactiveVariable CurrentReserveAmmo { get; set; } = new IntReactiveVariable();
+        protected ReactiveVariable<int> CurrentLoadedAmmo { get; set; } = new ReactiveVariable<int>();
+        protected ReactiveVariable<int> CurrentReserveAmmo { get; set; } = new ReactiveVariable<int>();
         protected bool IsShootingOnCooldown { get; set; } = false;
         protected WaitForSeconds ShootCooldownYieldInstruction { get; set; }
 

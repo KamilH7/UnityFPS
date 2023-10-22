@@ -20,7 +20,7 @@ namespace UnityFPS.DamageSystem
 		[field: SerializeField]
 		private UnityEvent OnDeath { get; set; }
 
-		protected FloatReactiveVariable Health { get; set; } = new FloatReactiveVariable();
+		protected ReactiveVariable<float> Health { get; set; } = new ReactiveVariable<float>();
 
 		private void OnEnable()
 		{
