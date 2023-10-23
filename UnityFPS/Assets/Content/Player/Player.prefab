@@ -575,7 +575,7 @@ MonoBehaviour:
   <RaycastLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 1
-  <RaycastLength>k__BackingField: 0.2
+  <RaycastLength>k__BackingField: 0.4
   <OnRaycastHit>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
