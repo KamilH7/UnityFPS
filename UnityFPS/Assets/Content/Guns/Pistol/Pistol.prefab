@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4619766118848055890}
   - component: {fileID: 4733491224365356781}
+  - component: {fileID: 1019855946373442422}
   m_Layer: 10
   m_Name: Pistol
   m_TagString: Untagged
@@ -292,6 +293,28 @@ MonoBehaviour:
   <ReloadTime>k__BackingField: 1
   <BasePower>k__BackingField: 50
   <GunShakePower>k__BackingField: 10
+  <GunAnimator>k__BackingField: {fileID: 1019855946373442422}
+  <ReloadAnimationTrigger>k__BackingField: Reload
+--- !u!95 &1019855946373442422
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2357544759739213348}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d7cc59eb62d90f544a0469b177433329, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4195515688648452928
 GameObject:
   m_ObjectHideFlags: 0

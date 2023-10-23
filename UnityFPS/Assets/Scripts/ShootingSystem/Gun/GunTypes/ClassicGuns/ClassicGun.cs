@@ -13,6 +13,12 @@ namespace UnityFPS.ShootingSystem
         [field: SerializeField]
         protected float GunShakePower { get; set; }
 
+        [field: Header("Animation")]
+        [field: SerializeField]
+        protected Animator GunAnimator { get; set; }
+        [field: SerializeField]
+        protected string ReloadAnimationTrigger { get; set; }
+
         protected bool IsReloadig { get; set; }
 
         public override void ShootInputStarted()
@@ -24,7 +30,7 @@ namespace UnityFPS.ShootingSystem
 		{
 			base.RealoadInput();
 
-            if (CurrentReserveAmmo.Value > 0)
+            if (CurrentReserveAmmo.Value > 0 && CurrentLoadedAmmo.Value != MagazineSize)
             {
                 StartCoroutine(ReloadCoroutine());
             }
@@ -45,6 +51,7 @@ namespace UnityFPS.ShootingSystem
 
 		protected virtual IEnumerator ReloadCoroutine()
         {
+            GunAnimator.SetTrigger(ReloadAnimationTrigger);
             IsReloadig = true;
             yield return new WaitForSeconds(ReloadTime);
             ApplyReloadedAmmo();
